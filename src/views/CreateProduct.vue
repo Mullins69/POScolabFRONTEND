@@ -1,5 +1,6 @@
 <template>
-  <form @submit.prevent="createBlog" class="form neu-border">
+<section class="crud">
+<form @submit.prevent="createBlog" class="form neu-border">
     <h2 class="form-heading">Create a Product</h2>
     <input
       class="form-input neu-border-inset"
@@ -38,6 +39,8 @@
     />
     <button type="submit" @click="createProduct" class="form-btn neu-border">Create Product</button>
   </form>
+</section>
+  
 </template>
 <script>
 export default {
@@ -82,11 +85,19 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
+
+.crud{
+  background-color: #212529  !important;
+  height: 100vh;
+}
+
+
+
 .neu-border {
   border-radius: 30px;
-  background: #f5f5f5;
-  box-shadow: 8px 8px 15px #e4e4e4, -8px -8px 15px #ffffff;
+  background: #6c757d;
+  box-shadow: 8px 8px 15px #e4e4e4, -8px -8px 15px #dee2e6;
 }
 .neu-border-inset {
   border-radius: 30px;
@@ -99,6 +110,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   padding: 40px;
+  padding-top: 9  0px;
   gap: 20px;
   width: 100%;
   max-width: 600px;

@@ -91,6 +91,7 @@ export default {
 <style scoped>
 #login {
     background: #222D32;
+    height: 100vh;
     font-family: 'Roboto', sans-serif;
 }
 

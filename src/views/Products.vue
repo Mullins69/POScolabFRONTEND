@@ -1,8 +1,8 @@
 <template>
-  <div v-if="products">
+  <div v-if="products" class="products">
     <h2>Products</h2>
     <div
-      class="container-fluid bg-trasparent my-4 p-3"
+      class="container-fluid"
       style="position: relative"
       v-if="products"
     >
@@ -138,17 +138,26 @@ export default {
 }
 
 .container-fluid {
+  
   max-width: 1400px;
 }
 
+.products{
+background-color: #212529!important;
+}
+
 .card {
-  background: #fff;
+  background: #6c757d;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
   transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
     0.3s box-shadow,
     0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
   border: 0;
   border-radius: 1rem;
+}
+
+.card:hover{
+  background-color: white;
 }
 
 .card-img,
