@@ -42,6 +42,7 @@
                   >Details
                   </router-link
                 ></span>
+                <span class="float-end">DELETE</span>
               </div>
             </div>
           </div>
@@ -105,7 +106,10 @@ export default {
         .catch((err) => {
           alert("User not logged in");
         });
-    } else {
+        
+    } 
+    
+    else {
       alert("User not logged in");
       this.$router.push({ name: "Login" });
     }

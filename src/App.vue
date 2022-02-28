@@ -1,5 +1,5 @@
 <template>
-  <Navbar />
+  <Navbar v-if="!$route.meta.hideNavbar" />
   <main>
     <router-view :key="$route.fullPath" />
   </main>
@@ -27,6 +27,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
 }
 </style>

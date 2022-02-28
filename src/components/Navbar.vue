@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="nav">
     <header>
       <div class="nav-wrapper">
         <div class="logo-container">
@@ -52,9 +52,6 @@ export default {
     };
   },
   methods: {
-    // toggleNav() {
-    //   this.isActive = !this.isActive;
-    // },
     logout() {
       localStorage.clear();
       this.toggleNav;
@@ -63,6 +60,14 @@ export default {
 };
 </script>
 <style scoped>
+li a {
+    text-decoration: none;
+	color: white;
+}
+li a:hover {
+    text-decoration: none;
+	color: yellow;
+}
 h1 {
   margin:0;
   color: #fff;
@@ -74,7 +79,6 @@ h1 {
 
 .nav-wrapper {
   display: flex;
-  position: fixed;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
@@ -143,7 +147,7 @@ h1 {
     right: 0;
     width: 280px;
     height: 100%;
-    background: #fff;
+    background: #343a40;
     box-shadow: -1px 0 2px rgba(0, 0, 0, 0.2);
   }
 

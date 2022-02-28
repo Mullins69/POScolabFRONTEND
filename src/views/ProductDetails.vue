@@ -1,12 +1,15 @@
 <template>
   <div v-if="product">
     <div class="blog">
-      <img class="blog-image neu-border"  :src="product.img" :alt="product.title" />
+      <div class="col" v-for="products of product" :key="products._id">
+ <img class="blog-image neu-border"  :src="products.img" :alt="products.title" />
       <div class="blog-details">
-        <h2>{{ product.title }}</h2>
-        <h4>{{ product.fullname }} - {{ product.category }}</h4>
-        <p>{{ product.description }}</p>
+        <h2>{{ products.title }}</h2>
+        <h4>{{ products._id }} - {{ product.category }}</h4>
+        <p>{{ products.description }}</p>
       </div>
+      </div>
+     
     </div>
   </div>
   <div v-else>Loading the product...</div>
@@ -42,7 +45,7 @@ export default {
         )
           .then((response) => response.json())
           .then((json) => {
-            product.created_by = json.title;
+            product.created_by = json._id;
           });
       });
   },

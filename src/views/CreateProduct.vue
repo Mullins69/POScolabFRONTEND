@@ -1,46 +1,77 @@
 <template>
-<section class="crud">
-<form @submit.prevent="createBlog" class="form neu-border">
-    <h2 class="form-heading">Create a Product</h2>
-    <input
-      class="form-input neu-border-inset"
-      type="text"
-      v-model="title"
-      placeholder="Title"
-      required
-    />
-    <input
-      class="form-input neu-border-inset"
-      type="text"
-      v-model="category"
-      placeholder="Category"
-      required
-    />
-    <input
-      class="form-input neu-border-inset"
-      type="text"
-      v-model="img"
-      placeholder="Blog Image"
-      required
-    />
-    <textarea
-      class="form-input neu-border-inset"
-      type="text"
-      v-model="description"
-      placeholder="Description"
-      required
-    ></textarea>
-  <input
-      class="form-input neu-border-inset"
-      type="text"
-      v-model="price"
-      placeholder="price"
-      required
-    />
-    <button type="submit" @click="createProduct" class="form-btn neu-border">Create Product</button>
-  </form>
-</section>
-  
+  <section class="create">
+    <div class="container">
+      <div class="form-body">
+        <div class="row">
+          <div class="form-holder">
+            <div class="form-content">
+              <div class="form-items">
+                <h3>Create A Product</h3>
+                <p>Fill in the data below.</p>
+                <form
+                  class="requires-validation"
+                  @submit.prevent="createProduct"
+                >
+                  <div class="col-md-12">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Product Title"
+                      required
+                      v-model="title"
+                    />
+                  </div>
+
+                  <div class="col-md-12">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Product Category"
+                      required
+                      v-model="category"
+                    />
+                  </div>
+                  <div class="col-md-12">
+                    <input
+                      class="form-input neu-border-inset"
+                      type="text"
+                      v-model="img"
+                      placeholder="Product Image"
+                      required
+            
+                    />
+                  </div>
+                  <div class="col-md-12 dess">
+                    <textarea
+                      class="form-control "
+                      type="text"
+                      v-model="description"
+                      placeholder="Description"
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="col-md-12">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Product Price"
+                      required
+                      v-model="price"
+                    />
+                  </div>
+                  <div class="form-button mt-3">
+                    <button id="submit" type="submit" class="btn btn-primary">
+                      Create
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 <script>
 export default {
@@ -50,7 +81,7 @@ export default {
       category: "",
       description: "",
       img: "",
-      price:""
+      price: "",
     };
   },
   methods: {
@@ -86,65 +117,139 @@ export default {
 };
 </script>
 <style scoped>
-
-.crud{
-  background-color: #212529  !important;
-  height: 100vh;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap");
+.dess{
+  padding-top: 20px;
 }
-
-
-
-.neu-border {
-  border-radius: 30px;
-  background: #6c757d;
-  box-shadow: 8px 8px 15px #e4e4e4, -8px -8px 15px #dee2e6;
-}
-.neu-border-inset {
-  border-radius: 30px;
-  background: #f5f5f5;
-  box-shadow: inset 8px 8px 15px #e4e4e4, inset -8px -8px 15px #ffffff;
-}
-
-.form {
+.create {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px;
-  padding-top: 9  0px;
-  gap: 20px;
-  width: 100%;
-  max-width: 600px;
-  margin-inline: auto;
-}
-
-.form-heading {
+  align-items: center;
   text-align: center;
-  text-transform: uppercase;
+  min-height: max-content;
+  background-color: #212529 !important;
 }
 
-.form-input,
-.form-btn {
-  border: none;
-  outline: none;
-  padding: 20px;
-}
-
-.form-btn {
-  cursor: pointer;
-  transition: all 0.1s linear;
-}
-
-.form-btn:hover {
-  transform: scale(1.05);
-}
-
-.form-social-login {
+.form-holder .form-content {
+  position: relative;
+  text-align: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  justify-content: space-between;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 60px;
 }
 
-.form-social-btn {
-  width: 45%;
-  color: #333;
+.form-content .form-items {
+  border: 3px solid #fff;
+  padding: 40px;
+  display: inline-block;
+  width: 100%;
+  min-width: 540px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  text-align: left;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
 }
+
+.form-content h3 {
+  color: #fff;
+  text-align: left;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.form-content h3.form-title {
+  margin-bottom: 30px;
+}
+
+.form-content p {
+  color: #fff;
+  text-align: left;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 20px;
+  margin-bottom: 30px;
+}
+
+.form-content label,
+.was-validated .form-check-input:invalid ~ .form-check-label,
+.was-validated .form-check-input:valid ~ .form-check-label {
+  color: #fff;
+}
+
+.form-content input[type="text"],
+.form-content select {
+  width: 100%;
+  padding: 9px 20px;
+  text-align: left;
+  border: 0;
+  outline: 0;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 15px;
+  font-weight: 300;
+   color: black;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  margin-top: 16px;
+}
+
+.btn-primary {
+  background-color: #6c757d;
+  outline: none;
+  border: 0px;
+  box-shadow: none;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #495056;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none;
+}
+
+.form-content textarea {
+  position: static !important;
+  width: 100%;
+  padding: 8px 20px;
+  border-radius: 6px;
+  text-align: left;
+  background-color: #fff;
+  border: 0;
+  font-size: 15px;
+  font-weight: 300;
+  color: black;
+  outline: none;
+  resize: none;
+  height: 120px;
+  -webkit-transition: none;
+  transition: none;
+  margin-bottom: 14px;
+}
+
+.form-content textarea:hover,
+.form-content textarea:focus {
+  border: 0;
+  background-color: #ebeff8;
+  color: #8d8d8d;
+}
+
+.mv-up {
+  margin-top: -9px !important;
+  margin-bottom: 8px !important;
+}
+
+
 </style>
