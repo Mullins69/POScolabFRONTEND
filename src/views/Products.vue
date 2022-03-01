@@ -1,6 +1,11 @@
 <template>
   <div v-if="products" class="products">
     <h2>Products</h2>
+    <div class="right-side">
+      <button class="cart"><router-link :to="{ name: 'Cart' }">
+        CART</router-link></button>
+     
+    </div>
     <div
       class="container-fluid"
       style="position: relative"
@@ -142,7 +147,7 @@ export default {
 }
 
 .container-fluid {
-  
+  margin-top: 120px;
   max-width: 1400px;
 }
 
@@ -162,6 +167,8 @@ background-color: #212529!important;
 
 .card:hover{
   background-color: white;
+  color: #000;
+  font-weight: bold;
 }
 
 .card-img,
@@ -334,4 +341,48 @@ background-color: #212529!important;
 .fa-chevron-circle-right:before {
   color: darkgray;
 }
+
+.right-side{
+
+  left: 81%;
+  margin-top: 25px;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 10;
+}
+
+.cart{
+  background-color: #ffcc00;
+  position: sticky;
+  color: #000;
+  border-radius: 300px;
+ border: none;
+  width: 100px;
+  height: 40px;
+  margin: 10px;
+}
+
+.cart:hover{
+  transform: scale(1.1);
+  color: white;
+}
+
+.profile{
+   background-color: #ffcc00;
+  color: #000;
+  position: sticky;
+  border-radius: 300px;
+ border: none;
+  width: 180px;
+  height: 40px;
+  margin: 10px;
+}
+
+.profile:hover{
+  color: white;
+  transform: scale(1.1);
+}
+
+
 </style>

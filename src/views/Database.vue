@@ -7,61 +7,57 @@
             <div class="form-content">
               <div class="form-items">
                 <h3>Create A Product</h3>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" alt="">
                 <p>Fill in the data below.</p>
                 <form
                   class="requires-validation"
-                  @submit.prevent="createProduct"
+                  @submit.prevent="editProduct"
                 >
                   <div class="col-md-12">
+                      <label for="">Name</label>
                     <input
                       class="form-control"
                       type="text"
-                      placeholder="Product Title"
+                      placeholder="Name"
                       required
-                      v-model="title"
-                    />
+                      v-model="Name"
+                    /> <br>
                   </div>
 
                   <div class="col-md-12">
+                      <label for="">Email</label><br>
                     <input
                       class="form-control"
                       type="text"
-                      placeholder="Product Category"
+                      placeholder="Email"
                       required
-                      v-model="category"
-                    />
+                      v-model="Email"
+                    /> <br>
                   </div>
                   <div class="col-md-12">
+                      <label for="">Password</label><br>
                     <input
                       class="form-input neu-border-inset"
                       type="text"
-                      v-model="img"
-                      placeholder="Product Image"
+                      v-model="Password"
+                      placeholder="Password"
                       required
-            
-                    />
-                  </div>
-                  <div class="col-md-12 dess">
-                    <textarea
-                      class="form-control "
-                      type="text"
-                      v-model="description"
-                      placeholder="Description"
-                      required
-                    ></textarea>
-                  </div>
+                    /> 
+                  </div> <br>
+                 
                   <div class="col-md-12">
+                      <label for="">Phone number</label><br>
                     <input
                       class="form-control"
                       type="text"
-                      placeholder="Product Price"
+                      placeholder="Phone number"
                       required
-                      v-model="price"
+                      v-model="number"
                     />
                   </div>
                   <div class="form-button mt-3">
                     <button id="submit" type="submit" class="btn btn-primary">
-                      Create
+                      Edit
                     </button>
                   </div>
                 </form>
@@ -132,6 +128,9 @@ export default {
   height: 100vh;
 }
 
+.form-items{
+    margin-top: 0px;
+}
 .form-holder .form-content {
   position: relative;
   text-align: center;
@@ -252,5 +251,17 @@ export default {
   margin-bottom: 8px !important;
 }
 
+img{
+    height: 150px;
+    width: 180px;
+    margin: 9px;
+}
 
+label{
+    font-size: 18px;
+}
+
+.btn{
+    width: 90px;
+}
 </style>
