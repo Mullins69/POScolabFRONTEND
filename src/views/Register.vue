@@ -103,6 +103,7 @@ export default {
     background: #222D32;
     height: fit-content;
     font-family: 'Roboto', sans-serif;
+
 }
 
 .login-box {
@@ -238,5 +239,12 @@ label {
 
 .loginbttm {
     padding: 0px;
+}
+@media (min-width: 1620px) and (max-width: 2560px)  {
+   #login {
+
+    height: 100vh !important;
+
+}
 }
 </style>
