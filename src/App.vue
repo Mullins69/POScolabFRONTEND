@@ -1,7 +1,11 @@
 <template>
   <Navbar v-if="!$route.meta.hideNavbar" />
   <main>
-    <router-view :key="$route.fullPath" />
+    <router-view v-slot="{ Component }" >
+  <transition name="fade" mode="out-in">
+    <component :is="Component"   :key="$route.fullPath" />
+  </transition>
+</router-view >
   </main>
 </template>
 
@@ -21,7 +25,16 @@ export default {
   font-family: "Nunito", sans-serif;
 }
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
 
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
