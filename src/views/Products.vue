@@ -36,7 +36,7 @@
                 {{ product.description }}
               </h5>
               <div class="d-grid gap-2 my-4">
-                <a href="" class="btn btn-warning bold-btn">add to cart</a>
+                <span class="btn btn-warning bold-btn" @click="addToCart">add to cart</span>
               </div>
               <div class="clearfix mb-1">
                 <span class="float-end">DELETE</span>
@@ -56,6 +56,32 @@ export default {
       products: null,
     };
   },
+  methods: {
+    addToCart(){
+        fetch("https://pos-colab.herokuapp.com/users", {
+        method: "POST",
+        body: JSON.stringify({
+          fullname: this.name,
+          email: this.email,
+          phone_number: this.contact,
+          password: this.password,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          alert("User registered");
+          localStorage.setItem("jwt", json.jwt);
+          this.$router.push({ name: "Products" });
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
+  }
+  ,
   mounted() {
     if (localStorage.getItem("jwt")) {
       fetch("https://pos-colab.herokuapp.com/products/", {
