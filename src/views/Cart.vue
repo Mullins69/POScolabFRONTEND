@@ -1,75 +1,79 @@
 <template>
-  <div v-if="products" class="products">
-    <h2>Products</h2>
-    <div class="right-side">
-      <button class="cart"><router-link :to="{ name: 'Cart' }">
-        CART</router-link></button>
-     
-    </div>
-    <div
-      class="container-fluid"
-      style="position: relative"
-      v-if="products"
-    >
-      <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
-        <div class="col hp" v-for="product of products" :key="product._id">
-          <div class="card h-100 shadow-sm">
-            <a href="#">
-              <img
-                :src="product.img"
-                class="card-img-top"
-                :alt="product.title"
-              />
-            </a>
-
-            <div class="label-top shadow-sm">
-              <a class="text-white" href="#">{{ product.category }}</a>
-            </div>
-            <div class="card-body">
-              <div class="clearfix mb-3">
-                <span class="float-start badge rounded-pill bg-success"
-                  >R{{ product.price }}</span
-                >
-
-                <span class="float-end"></span>
-              </div>
-              <h5 class="card-title">
-                <a target="_blank" href="#">{{ product.title }}</a>
-              </h5>
-
-              <div class="d-grid gap-2 my-4">
-                <a href="/cart" class="btn btn-warning bold-btn">add to cart</a>
-              </div>
-              <div class="clearfix mb-1">
-                <span class="float-start"
-                  ><router-link
-                    :to="{ name: 'ProductDetails', params: { id: product._id } }"
-                  >Details
-                  </router-link
-                ></span>
-                <span class="float-end">DELETE</span>
-              </div>
-            </div>
+<main id="cart" style="max-width:960px">
+  <div class="back"><a href="#">&#11178; shop</a></div>
+  <h1>Your Cart</h1>
+  <div class="container-fluid">
+    <div class="row align-items-start">
+      <div class="col-12 col-sm-8 items">
+        <!--1-->
+        <div class="cartItem row align-items-start">
+          <div class="col-3 mb-2">
+            <img class="w-100" src="https://badux.co/smc/codepen/birdcage-posters.jpg" alt="art image">
+          </div>
+          <div class="col-5 mb-2">
+            <h6 class="">Dark Art 1</h6>
+            <p class="pl-1 mb-0">20 x 24</p>
+            <p class="pl-1 mb-0">Matte Print</p>
+          </div>
+          <div class="col-2">
+            <p class="cartItemQuantity p-1 text-center">1</p>
+          </div>
+          <div class="col-2">
+            <p id="cartItem1Price">$66</p>
           </div>
         </div>
+        <hr>
+        <!--2-->
+        <div class="cartItem row align-items-start">
+          <div class="col-3 mb-2">
+            <img class="w-100" src="https://badux.co/smc/codepen/birdcage-posters.jpg" alt="art image">
+          </div>
+          <div class="col-5 mb-2">
+            <h6 class="">Dark Art 2</h6>
+            <p class="pl-1 mb-0">20 x 24</p>
+            <p class="pl-1 mb-0">Matte Print</p>
+          </div>
+          <div class="col-2">
+            <p class="cartItemQuantity p-1 text-center">1</p>
+          </div>
+          <div class="col-2">
+            <p id="cartItem1Price">$66</p>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="col-12 col-sm-4 p-3 proceed form">
+        <div class="row m-0">
+          <div class="col-sm-8 p-0">
+            <h6>Subtotal</h6>
+          </div>
+          <div class="col-sm-4 p-0">
+            <p id="subtotal">$132.00</p>
+          </div>
+        </div>
+        <div class="row m-0">
+          <div class="col-sm-8 p-0 ">
+            <h6>Tax</h6>
+          </div>
+          <div class="col-sm-4 p-0">
+            <p id="tax">$6.40</p>
+          </div>
+        </div>
+        <hr>
+        <div class="row mx-0 mb-2">
+          <div class="col-sm-8 p-0 d-inline">
+            <h5>Total</h5>
+          </div>
+          <div class="col-sm-4 p-0">
+            <p id="total">$138.40</p>
+          </div>
+        </div>
+        <a href="#"><button id="btn-checkout" class="shopnow"><span>Checkout</span></button></a>
       </div>
     </div>
-
-    <!-- <div class="container"><div class="row">
-    <div class="col" v-if="products">
-
-      <router-link
-        v-for="product of products"
-        :key="product._id"
-        :to="{ name: 'BlogDetails', params: { id: product._id } }"
-      >
-        <img :src="product.img" :alt="product.title" />
-        <p>{{product.description}}</p>
-      </router-link>
-    </div>
-    </div>
-    </div> -->
   </div>
+  
+</main>
 </template>
 
 <script>
@@ -79,266 +83,172 @@ export default {
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-@import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
-
-:root {
-  --font1: "Heebo", sans-serif;
-  --font2: "Fira Sans Extra Condensed", sans-serif;
-  --font3: "Roboto", sans-serif;
-
-  --btnbg: #ffcc00;
-  --btnfontcolor: rgb(61, 61, 61);
-  --btnfontcolorhover: rgb(255, 255, 255);
-  --btnbghover: #ffc116;
-  --btnactivefs: rgb(241, 195, 46);
-
-  --label-index: #960796;
-  --danger-index: #5bc257;
-  /* PAGINATE */
-  --link-color: #000;
-  --link-color-hover: #fff;
-  --bg-content-color: #ffcc00;
+#cart {
+  max-width: 1440px;
+  padding-top: 60px;
+  margin: auto;
+}
+.form div {
+  margin-bottom: 0.4em;
+}
+.cartItem {
+  --bs-gutter-x: 1.5rem;
+}
+.cartItemQuantity,
+.proceed {
+  background: #f4f4f4;
+}
+.items {
+  padding-right: 30px;
+}
+#btn-checkout {
+  min-width: 100%;
 }
 
-.container-fluid {
-  margin-top: 120px;
-  max-width: 1400px;
-}
-
-.products{
-background-color: #212529!important;
-}
-
-.card {
-  background: #6c757d;
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
-  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
-    0.3s box-shadow,
-    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
-  border: 0;
-  border-radius: 1rem;
-}
-
-.card:hover{
-  background-color: white;
-  color: #000;
-  font-weight: bold;
-}
-
-.card-img,
-.card-img-top {
-  border-top-left-radius: calc(1rem - 1px);
-  border-top-right-radius: calc(1rem - 1px);
-}
-
-.card h5 {
-  overflow: hidden;
-  height: 55px;
-  font-weight: 300;
-  font-size: 1rem;
-}
-
-.card h5 a {
-  color: black;
-  text-decoration: none;
-}
-
-.card-img-top {
-  width: 100%;
-  min-height: 250px;
-  max-height: 250px;
-  object-fit: contain;
-  padding: 30px;
-}
-
-.card h2 {
-  font-size: 1rem;
-}
-
-.card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
-}
-
-/* Centered text */
-.label-top {
-  position: absolute;
-  background-color: var(--label-index);
-  color: #fff;
-  top: 8px;
-  right: 8px;
-  padding: 5px 10px 5px 10px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  border-radius: 3px;
-  text-transform: uppercase;
-}
-
-.top-right {
-  position: absolute;
-  top: 24px;
-  left: 24px;
-
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  font-size: 1rem;
-  font-weight: 900;
-  background: #8bc34a;
-  line-height: 90px;
-  text-align: center;
-  color: white;
-}
-
-.top-right span {
-  display: inline-block;
-  vertical-align: middle;
-  /* line-height: normal; */
-  /* padding: 0 25px; */
-}
-
-.aff-link {
-  /* text-decoration: overline; */
-  font-weight: 500;
-}
-
-.over-bg {
-  background: rgba(53, 53, 53, 0.85);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
-  border-radius: 10px;
-}
-.bold-btn {
-  font-size: 1rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  padding: 5px 50px 5px 50px;
-}
-.box .btn {
-  font-size: 1.5rem;
-}
-
-@media (max-width: 1025px) {
-  .btn {
-    padding: 5px 40px 5px 40px;
-  }
-}
-@media (max-width: 250px) {
-  .btn {
-    padding: 5px 30px 5px 30px;
-  }
-}
-
-/* START BUTTON */
-.btn-warning {
-  background: var(--btnbg);
-  color: var(--btnfontcolor);
-  fill: #ffffff;
-  border: none;
-  text-decoration: none;
-  outline: 0;
-  /* box-shadow: -1px 6px 19px rgba(247, 129, 10, 0.25); */
-  border-radius: 100px;
-}
-.btn-warning:hover {
-  background: var(--btnbghover);
-  color: var(--btnfontcolorhover);
-  /* box-shadow: -1px 6px 13px rgba(255, 150, 43, 0.35); */
-}
-.btn-check:focus + .btn-warning,
-.btn-warning:focus {
-  background: var(--btnbghover);
-  color: var(--btnfontcolorhover);
-  /* box-shadow: -1px 6px 13px rgba(255, 150, 43, 0.35); */
-}
-.btn-warning:active:focus {
-  box-shadow: 0 0 0 0.25rem var(--btnactivefs);
-}
-.btn-warning:active {
-  background: var(--btnbghover);
-  color: var(--btnfontcolorhover);
-  /* box-shadow: -1px 6px 13px rgba(255, 150, 43, 0.35); */
-}
-
-/* END BUTTON */
-
-.bg-success {
-  font-size: 1rem;
-  background-color: var(--btnbg) !important;
-  color: var(--btnfontcolor) !important;
-}
-.bg-danger {
-  font-size: 1rem;
-}
-
-.price-hp {
-  font-size: 1rem;
-  font-weight: 600;
-  color: darkgray;
-}
-
-.amz-hp {
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: darkgray;
-}
-
-.fa-question-circle:before {
-  /* content: "\f059"; */
-  color: darkgray;
-}
-
-.fa-heart:before {
-  color: crimson;
-}
-.fa-chevron-circle-right:before {
-  color: darkgray;
-}
-
-.right-side{
-
-  left: 81%;
-  margin-top: 25px;
+/* stasysiia.com */
+@import url("https://fonts.googleapis.com/css2?family=Exo&display=swap");
+body {
+  background-color: #fff;
+  font-family: "Exo", sans-serif;
+  font-size: 22px;
+  margin: 0;
+  padding: 0;
+  color: #111111;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  z-index: 10;
+}
+a {
+  color: #0e1111;
+  text-decoration: none;
+}
+.btn-check:focus + .btn-primary,
+.btn-primary:focus {
+  color: #fff;
+  background-color: #111;
+  border-color: transparent;
+  box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 50%);
+}
+button:hover,
+.btn:hover {
+  box-shadow: 5px 5px 7px #c8c8c8, -5px -5px 7px white;
+}
+button:active {
+  box-shadow: 2px 2px 2px #c8c8c8, -2px -2px 2px white;
 }
 
-.cart{
-  background-color: #ffcc00;
-  position: sticky;
-  color: #000;
-  border-radius: 300px;
- border: none;
-  width: 100px;
-  height: 40px;
-  margin: 10px;
+/*PREVENT BROWSER SELECTION*/
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: none;
+}
+/*main*/
+main:before {
+  content: "";
+  display: block;
+  height: 88px;
+}
+h1 {
+  font-size: 2.4em;
+  font-weight: 600;
+  letter-spacing: 0.15rem;
+  text-align: center;
+  margin: 30px 6px;
+}
+h2 {
+  color: rgb(37, 44, 54);
+  font-weight: 700;
+  font-size: 2.5em;
+}
+h3 {
+  border-bottom: solid 2px #000;
+}
+h5 {
+  padding: 0;
+  font-weight: bold;
+  color: #92afcc;
+}
+p {
+  color: #333;
+  font-family: "Roboto", sans-serif;
+  margin: 0.6em 0;
+}
+h1,
+h2,
+h4 {
+  text-align: center;
+  padding-top: 16px;
+}
+/* yukito bloody */
+.back {
+  position: relative;
+  top: -30px;
+  font-size: 16px;
+  margin: 10px 10px 3px 15px;
+}
+.inline {
+  display: inline-block;
 }
 
-.cart:hover{
-  transform: scale(1.1);
+.shopnow,
+.contact {
+  background-color: #000;
+  padding: 10px 20px;
+  font-size: 30px;
   color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.5s;
+  cursor: pointer;
 }
-
-.profile{
-   background-color: #ffcc00;
-  color: #000;
-  position: sticky;
-  border-radius: 300px;
- border: none;
-  width: 180px;
-  height: 40px;
-  margin: 10px;
-}
-
-.profile:hover{
+.shopnow:hover {
+  text-decoration: none;
   color: white;
-  transform: scale(1.1);
+  background-color: #c41505;
+}
+/* for button animation*/
+.shopnow span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: all 0.5s;
+}
+.shopnow span:after {
+  content: url("https://badux.co/smc/codepen/caticon.png");
+  position: absolute;
+  font-size: 30px;
+  opacity: 0;
+  top: 2px;
+  right: -6px;
+  transition: all 0.5s;
+}
+.shopnow:hover span {
+  padding-right: 25px;
+}
+.shopnow:hover span:after {
+  opacity: 1;
+  top: 2px;
+  right: -6px;
+}
+.ma {
+  margin: auto;
+}
+.price {
+  color: slategrey;
+  font-size: 2em;
+}
+#mycart {
+  min-width: 90px;
+}
+#cartItems {
+  font-size: 17px;
+}
+#product .container .row .pr4 {
+  padding-right: 15px;
+}
+#product .container .row .pl4 {
+  padding-left: 15px;
 }
 
 </style>
