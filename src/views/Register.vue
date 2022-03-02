@@ -103,6 +103,7 @@ export default {
     background: #222D32;
     height: fit-content;
     font-family: 'Roboto', sans-serif;
+    height: 100vh;
 }
 
 .login-box {
