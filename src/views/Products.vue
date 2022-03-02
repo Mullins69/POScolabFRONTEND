@@ -2,14 +2,11 @@
   <div v-if="products" class="products">
     <h2>Products</h2>
     <div class="right-side">
-      <button class="cart"><router-link :to="{ name: 'Cart' }">
-        CART</router-link></button>
-     
+      <button class="cart">
+        <router-link :to="{ name: 'Cart' }"> CART</router-link>
+      </button>
     </div>
-    <div
-      class="container-fluid"
-      style="position: relative"
-    >
+    <div class="container-fluid" style="position: relative">
       <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
         <div class="col hp" v-for="product of products" :key="product._id">
           <div class="card h-100 shadow-sm">
@@ -36,10 +33,10 @@
                 <a target="_blank" href="#">{{ product.title }}</a>
               </h5>
               <h5>
-                {{product.description}}
+                {{ product.description }}
               </h5>
               <div class="d-grid gap-2 my-4">
-                <a href="/cart" class="btn btn-warning bold-btn">add to cart</a>
+                <a href="" class="btn btn-warning bold-btn">add to cart</a>
               </div>
               <div class="clearfix mb-1">
                 <span class="float-end">DELETE</span>
@@ -84,25 +81,19 @@ export default {
             )
               .then((response) => response.json())
               .then((json) => {
-                product.created_by = json.title
-                ;
+                product.created_by = json.title;
               });
           });
         })
         .catch((err) => {
           alert("User not logged in");
         });
-        
-    } 
-    
-    else {
+    } else {
       alert("User not logged in");
       this.$router.push({ name: "Login" });
     }
   },
 };
-
-
 </script>
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -134,8 +125,8 @@ export default {
   max-width: 1400px;
 }
 
-.products{
-background-color: #212529!important;
+.products {
+  background-color: #212529 !important;
 }
 
 .card {
@@ -148,7 +139,12 @@ background-color: #212529!important;
   border-radius: 1rem;
 }
 
-.card:hover{
+.label-top{
+  background-color: #960796 !important;
+
+}
+
+.card:hover {
   background-color: white;
   color: #000;
   font-weight: bold;
@@ -239,6 +235,8 @@ background-color: #212529!important;
   border-radius: 10px;
 }
 .bold-btn {
+  background-color: #ffcc00 !important;
+  color: #000 !important;
   font-size: 1rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -294,8 +292,8 @@ background-color: #212529!important;
 
 .bg-success {
   font-size: 1rem;
-  background-color: var(--btnbg) !important;
-  color: var(--btnfontcolor) !important;
+  background-color: #ffcc00 !important;
+  color: #000 !important;
 }
 .bg-danger {
   font-size: 1rem;
@@ -325,8 +323,7 @@ background-color: #212529!important;
   color: darkgray;
 }
 
-.right-side{
-
+.right-side {
   left: 81%;
   justify-content: center;
   align-items: center;
@@ -334,37 +331,35 @@ background-color: #212529!important;
   z-index: 10;
 }
 
-.cart{
+.cart {
   background-color: #ffcc00;
   position: sticky;
   color: #000;
   border-radius: 300px;
- border: none;
+  border: none;
   width: 100px;
   height: 40px;
   margin: 10px;
 }
 
-.cart:hover{
+.cart:hover {
   transform: scale(1.1);
   color: white;
 }
 
-.profile{
-   background-color: #ffcc00;
+.profile {
+  background-color: #ffcc00;
   color: #000;
   position: sticky;
   border-radius: 300px;
- border: none;
+  border: none;
   width: 180px;
   height: 40px;
   margin: 10px;
 }
 
-.profile:hover{
+.profile:hover {
   color: white;
   transform: scale(1.1);
 }
-
-
 </style>
