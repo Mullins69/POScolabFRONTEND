@@ -3,15 +3,25 @@
     <div class="container">
       <div class="form-body">
         <div class="row">
+
+                <div class="col" v-if="users">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" alt="">
+                  <span>
+                  <h3>Name: {{users.fullname}} </h3>
+                  <h3>Email: {{users.email}} </h3>
+                  <h3>Cell No: {{users.phone_number}} </h3>
+                  </span>
+                </div>  
+              
           <div class="form-holder">
             <div class="form-content">
               <div class="form-items">
-                <h3>Create A Product</h3>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" alt="">
+
+
                 <p>Fill in the data below.</p>
                 <form
                   class="requires-validation"
-                  @submit.prevent="editProduct"
+                  @submit.prevent="modUser"
                 >
                   <div class="col-md-12">
                       <label for="">Name</label>
@@ -19,7 +29,6 @@
                       class="form-control"
                       type="text"
                       placeholder="Name"
-                      required
                       v-model="Name"
                     /> <br>
                   </div>
@@ -30,7 +39,7 @@
                       class="form-control"
                       type="text"
                       placeholder="Email"
-                      required
+
                       v-model="Email"
                     /> <br>
                   </div>
@@ -41,7 +50,7 @@
                       type="text"
                       v-model="Password"
                       placeholder="Password"
-                      required
+
                     /> 
                   </div> <br>
                  
@@ -51,12 +60,11 @@
                       class="form-control"
                       type="text"
                       placeholder="Phone number"
-                      required
                       v-model="number"
                     />
                   </div>
                   <div class="form-button mt-3">
-                    <button id="submit" type="submit" class="btn btn-primary">
+                    <button id="submit" type="submit"  class="btn btn-primary">
                       Edit
                     </button>
                   </div>
@@ -65,6 +73,9 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          
+        </div>
       </div>
     </div>
   </section>
@@ -72,28 +83,29 @@
 <script>
 export default {
   data() {
+
     return {
-      title: "",
-      category: "",
-      description: "",
-      img: "",
-      price: "",
+      users: null,
+      Name: "",
+      Email: "",
+      Password: "",
+      number: ""
+      
     };
   },
-  methods: {
-    createProduct() {
+methods: {
+  modUser(){
       if (!localStorage.getItem("jwt")) {
         alert("User not logged in");
         return this.$router.push({ name: "Login" });
       }
-      fetch("https://pos-colab.herokuapp.com/products", {
-        method: "POST",
+      fetch("https://pos-colab.herokuapp.com/users/", {
+        method: "PUT",
         body: JSON.stringify({
-          title: this.title,
-          description: this.description,
-          category: this.category,
-          price: this.price,
-          img: this.img,
+          fullname: this.Name,
+          email: this.Email,
+          password: this.Password,
+          phone_number: this.number
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -102,14 +114,36 @@ export default {
       })
         .then((response) => response.json())
         .then((json) => {
-          alert("Product Created");
-          this.$router.push({ name: "Products" });
+          alert("User Updated");
+          this.$router.push({ name: "UserProfile" });
         })
         .catch((err) => {
           alert(err);
         });
+  }
+  
     },
-  },
+    mounted(){
+      if (!localStorage.getItem("jwt")) {
+        alert("User not logged in");
+        return this.$router.push({ name: "Login" });
+      }
+      fetch("https://pos-colab.herokuapp.com/users/oneuser/", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json)
+          this.users = json
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
 };
 </script>
 <style scoped>
@@ -125,7 +159,7 @@ export default {
   text-align: center;
   min-height: max-content;
   background-color: #212529 !important;
-  height: 100vh;
+
 }
 
 .form-items{

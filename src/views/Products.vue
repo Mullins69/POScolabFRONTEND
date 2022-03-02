@@ -9,7 +9,6 @@
     <div
       class="container-fluid"
       style="position: relative"
-      v-if="products"
     >
       <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
         <div class="col hp" v-for="product of products" :key="product._id">
@@ -36,17 +35,13 @@
               <h5 class="card-title">
                 <a target="_blank" href="#">{{ product.title }}</a>
               </h5>
-
+              <h5>
+                {{product.description}}
+              </h5>
               <div class="d-grid gap-2 my-4">
                 <a href="/cart" class="btn btn-warning bold-btn">add to cart</a>
               </div>
               <div class="clearfix mb-1">
-                <span class="float-start"
-                  ><router-link
-                    :to="{ name: 'ProductDetails', params: { id: product._id } }"
-                  >Details
-                  </router-link
-                ></span>
                 <span class="float-end">DELETE</span>
               </div>
             </div>
@@ -54,21 +49,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="container"><div class="row">
-    <div class="col" v-if="products">
-
-      <router-link
-        v-for="product of products"
-        :key="product._id"
-        :to="{ name: 'BlogDetails', params: { id: product._id } }"
-      >
-        <img :src="product.img" :alt="product.title" />
-        <p>{{product.description}}</p>
-      </router-link>
-    </div>
-    </div>
-    </div> -->
   </div>
   <div v-else>Loading Products...</div>
 </template>
@@ -104,7 +84,8 @@ export default {
             )
               .then((response) => response.json())
               .then((json) => {
-                product.created_by = json.title;
+                product.created_by = json.title
+                ;
               });
           });
         })
@@ -149,7 +130,7 @@ export default {
 }
 
 .container-fluid {
-  margin-top: 120px;
+  margin-top: 60px;
   max-width: 1400px;
 }
 
@@ -347,7 +328,6 @@ background-color: #212529!important;
 .right-side{
 
   left: 81%;
-  margin-top: 25px;
   justify-content: center;
   align-items: center;
   position: fixed;

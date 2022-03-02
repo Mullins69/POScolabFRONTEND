@@ -129,7 +129,7 @@ export default {
   text-align: center;
   min-height: max-content;
   background-color: #212529 !important;
-  height: 100vh;
+
 }
 
 .form-holder .form-content {
