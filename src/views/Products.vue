@@ -36,11 +36,7 @@
                 {{ product.description }}
               </h5>
               <div class="d-grid gap-2 my-4">
-<<<<<<< HEAD
                 <a href="" class="btn btn-warning bold-btn">add to cart</a>
-=======
-                <a class="btn btn-warning bold-btn">add to cart</a>
->>>>>>> 635413c308d218bf97ca6859191e6bf5299eca04
               </div>
               <div class="clearfix mb-1">
                 <span class="float-end">DELETE</span>
