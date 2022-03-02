@@ -1,36 +1,37 @@
 <template>
-  <form @submit.prevent="register" class="form neu-border">
-    <h2 class="form-heading">Register</h2>
-    <input
-      class="form-input neu-border-inset"
-      type="text"
-      v-model="name"
-      placeholder="FName"
-      required
-    />
-    <input
-      class="form-input neu-border-inset"
-      type="email"
-      v-model="email"
-      placeholder="Email"
-      required
-    />
-    <input
-      class="form-input neu-border-inset"
-      type="text"
-      v-model="contact"
-      placeholder="Contact Number"
-      required
-    />
-    <input
-      class="form-input neu-border-inset"
-      type="password"
-      v-model="password"
-      placeholder="Password"
-      required
-    />
-    <button type="submit" class="form-btn neu-border">Sign up</button>
-    <!-- <div class="form-social-login">
+  <section class="register">
+    <form @submit.prevent="register" class="form neu-border">
+      <h2 class="form-heading">Register</h2>
+      <input
+        class="form-input neu-border-inset"
+        type="text"
+        v-model="name"
+        placeholder="FName"
+        required
+      />
+      <input
+        class="form-input neu-border-inset"
+        type="email"
+        v-model="email"
+        placeholder="Email"
+        required
+      />
+      <input
+        class="form-input neu-border-inset"
+        type="text"
+        v-model="contact"
+        placeholder="Contact Number"
+        required
+      />
+      <input
+        class="form-input neu-border-inset"
+        type="password"
+        v-model="password"
+        placeholder="Password"
+        required
+      />
+      <button type="submit" class="form-btn neu-border">Sign up</button>
+      <!-- <div class="form-social-login">
       <button class="form-btn neu-border form-social-btn">
         <i class="fab fa-google"></i>
       </button>
@@ -39,11 +40,12 @@
       </button>
     </div> -->
 
-    <p>
-      Already a member?
-      <router-link :to="{ name: 'Login' }">Sign in</router-link>
-    </p>
-  </form>
+      <p>
+        Already a member?
+        <router-link :to="{ name: 'Login' }">Sign in</router-link>
+      </p>
+    </form>
+  </section>
 </template>
 <script>
 export default {
@@ -82,10 +84,22 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
+* {
+  margin: 0 !important;
+  padding: 0;
+}
+
+.register {
+  padding-left: 605px !important;
+  padding-top: 90px;
+  margin: 5px;
+  background-color: #212529;
+  height: 100vh;
+}
 .neu-border {
   border-radius: 30px;
-  background: #f5f5f5;
+  background-color: #6c757d !important;
   box-shadow: 8px 8px 15px #e4e4e4, -8px -8px 15px #ffffff;
 }
 .neu-border-inset {
