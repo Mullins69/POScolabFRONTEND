@@ -147,7 +147,7 @@ export default {
 }
 
 .container-fluid {
-  margin-top: 120px;
+  margin-top: 60px;
   max-width: 1400px;
 }
 
@@ -345,7 +345,6 @@ background-color: #212529!important;
 .right-side{
 
   left: 81%;
-  margin-top: 25px;
   justify-content: center;
   align-items: center;
   position: fixed;

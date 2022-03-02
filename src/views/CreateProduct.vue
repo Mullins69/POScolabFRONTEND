@@ -6,7 +6,7 @@
           <div class="form-holder">
             <div class="form-content">
               <div class="form-items">
-                <h3>Create A Product</h3>
+                <h3>Edit User Profile</h3>
                 <p>Fill in the data below.</p>
                 <form
                   class="requires-validation"
@@ -129,7 +129,7 @@ export default {
   text-align: center;
   min-height: max-content;
   background-color: #212529 !important;
-  height: 100vh;
+
 }
 
 .form-holder .form-content {

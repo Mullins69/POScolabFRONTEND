@@ -3,11 +3,15 @@
     <div class="container">
       <div class="form-body">
         <div class="row">
+
+                <div class="col">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" alt="">
+                </div>  
           <div class="form-holder">
             <div class="form-content">
               <div class="form-items">
-                <h3>Create A Product</h3>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" alt="">
+
+
                 <p>Fill in the data below.</p>
                 <form
                   class="requires-validation"
@@ -81,34 +85,6 @@ export default {
     };
   },
   methods: {
-    createProduct() {
-      if (!localStorage.getItem("jwt")) {
-        alert("User not logged in");
-        return this.$router.push({ name: "Login" });
-      }
-      fetch("https://pos-colab.herokuapp.com/products", {
-        method: "POST",
-        body: JSON.stringify({
-          title: this.title,
-          description: this.description,
-          category: this.category,
-          price: this.price,
-          img: this.img,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          alert("Product Created");
-          this.$router.push({ name: "Products" });
-        })
-        .catch((err) => {
-          alert(err);
-        });
-    },
   },
 };
 </script>
@@ -125,7 +101,7 @@ export default {
   text-align: center;
   min-height: max-content;
   background-color: #212529 !important;
-  height: 100vh;
+
 }
 
 .form-items{

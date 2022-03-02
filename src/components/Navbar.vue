@@ -34,7 +34,7 @@
               <li class="nav-tab">
                 <router-link :to="{ name: 'Login' }">Login</router-link>
               </li>
-              <li class="nav-tab"><router-link :to="{ name: 'Database'}">
+              <li class="nav-tab"><router-link :to="{ name: 'UserProfile'}">
               User Profile</router-link></li>
             </ul>
             
@@ -79,7 +79,7 @@ h1 {
 }
 
 .nav-wrapper {
-  position: fixed;
+
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
