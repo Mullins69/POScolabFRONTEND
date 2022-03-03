@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.f4fdd77469ee0f798ed5c2f9cc3b2431.js"
+  "/precache-manifest.ec9acbe79584147d4e4b03c706603b62.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "poscolab"});

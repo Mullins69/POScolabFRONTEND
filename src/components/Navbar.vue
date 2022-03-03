@@ -180,6 +180,7 @@ h1 {
     z-index: 2;
     padding: 10px;
     border-radius: 10px;
+    background-color: #fff;
   }
 
   .menu-btn .menu {
@@ -193,10 +194,12 @@ h1 {
   .menu-btn .menu:nth-child(2) {
     margin-top: 4px;
     opacity: 1;
+     background-color: #fff;
   }
 
   .menu-btn .menu:nth-child(3) {
     margin-top: 4px;
+     background-color: #fff;
   }
 
   #menuToggle:checked + .menu-btn .menu {
