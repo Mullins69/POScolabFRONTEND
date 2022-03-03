@@ -11,6 +11,7 @@
       <div class="row">
         <div class="col">
            <div class="search-box">
+             
       <input type="text" v-model="search" class="search-input" placeholder="Search..">
    </div>
         </div>
