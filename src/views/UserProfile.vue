@@ -116,7 +116,27 @@ export default {
     };
   },
 methods: {
-  
+  deleteUser(){
+            if (!localStorage.getItem("jwt")) {
+        alert("User not logged in");
+        return this.$router.push({ name: "Login" });
+      }
+      fetch('https://pos-colab.herokuapp.com/users', {
+      method: 'DELETE',
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          alert("DELETED USER")
+          localStorage.clear();
+        })
+        .catch((err) => {
+          alert(err);
+        });
+            },
   forceRerender() {
         // Removing my-component from the DOM
         this.renderComponent = false;
@@ -176,26 +196,7 @@ methods: {
           alert(err);
         });
     },
-    deleteUser(){
-            if (!localStorage.getItem("jwt")) {
-        alert("User not logged in");
-        return this.$router.push({ name: "Login" });
-      }
-      fetch("https://pos-colab.herokuapp.com/users/", {
-        method: "DELETE",
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          alert("DELETED USER")
-        })
-        .catch((err) => {
-          alert(err);
-        });
-            },
+    
     
     
 };
