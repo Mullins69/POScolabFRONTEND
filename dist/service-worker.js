@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.f12a88d761d89d474fc09f5ea2b043fc.js"
+  "/precache-manifest.70523967ef4124769e44172576487156.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "generic-blog"});
+workbox.core.setCacheNameDetails({prefix: "poscolab"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {

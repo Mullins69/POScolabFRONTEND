@@ -45,10 +45,10 @@
                 {{ product.description }}
               </h5>
               <div class="d-grid gap-2 my-4">
-                <span class="btn btn-warning bold-btn" @click="addToCart">add to cart</span>
+                <span class="btn btn-warning bold-btn" @click="addToCart(product._id)">add to cart</span>
               </div>
               <div class="clearfix mb-1">
-                <button class="float-end btn btn-danger" @click="deleteProduct" >DELETE</button>
+                <button class="float-end btn btn-danger" @click="deleteProduct(product._id)" >DELETE</button>
               </div>
             </div>
           </div>
@@ -66,15 +66,16 @@ export default {
       products: null,
       search: "",
       renderComponent: true,
+      cart: 1
     };
   },
   methods: {
-    deleteProduct(){
+    deleteProduct(id){
             if (!localStorage.getItem("jwt")) {
         alert("User not logged in");
         return this.$router.push({ name: "Login" });
       }
-      fetch('https://pos-colab.herokuapp.com/products/', {
+      fetch('https://pos-colab.herokuapp.com/products/'  + id, {
       method: 'DELETE',
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -99,23 +100,20 @@ export default {
         });
       }
     ,
-    addToCart(){
-        fetch("https://pos-colab.herokuapp.com/users", {
+    addToCart(id){
+        fetch(`https://pos-colab.herokuapp.com/users/${id}/cart`, {
         method: "POST",
         body: JSON.stringify({
-          fullname: this.name,
-          email: this.email,
-          phone_number: this.contact,
-          password: this.password,
+          quantity: this.cart,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
+           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         },
       })
         .then((response) => response.json())
         .then((json) => {
-          alert("User registered");
-          localStorage.setItem("jwt", json.jwt);
+          alert("Added to Cart");
           this.$router.push({ name: "Products" });
         })
         .catch((err) => {
