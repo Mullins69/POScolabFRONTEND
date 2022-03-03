@@ -4,7 +4,7 @@
           <div class="row">
               <div class="col">
                   <div class="header">
-                      <img src="../assets/logo/logo.png" alt="">
+
             <h1>M&M POINT OF SALE SYSTEM</h1>
             <h2>Register Now</h2>
             <button type="button" class="btn btn-outline-primary"><router-link class="router" :to="{ name: 'Register' }"> Register
@@ -62,12 +62,10 @@ h1{
 background-color: #0DB8DE;
 }
 
-img{
-    margin-top: -90px;
-    height: 350px;
-    width: 400px;
-    -webkit-animation: shadow-drop-2-center 0.9s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: shadow-drop-2-center 0.9s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+.home{
+
+  background:linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/logo/logo.png');
+  background-size:cover;
 }
 
 /* ----------------------------------------------

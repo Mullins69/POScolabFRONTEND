@@ -1,32 +1,48 @@
 <template>
-  <section class="create">
+  <section class="create" v-if="renderComponent">
     <div class="container">
       <div class="form-body">
         <div class="row">
 
                 <div class="col" v-if="users">
                   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" alt="">
-                  <span>
+                  <span class="del">
                   <h3>Name: {{users.fullname}} </h3>
                   <h3>Email: {{users.email}} </h3>
                   <h3>Cell No: {{users.phone_number}} </h3>
                   </span>
+
                 </div>  
-              
-          <div class="form-holder">
-            <div class="form-content">
-              <div class="form-items">
+      
+        </div>
+        <div class="row">
+          <div class="col">
+            <!-- Button trigger modal -->
+<span>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Edit Profile
+</button></span>
+                  <span class="del"><button type="button" class="btn btn-danger" @click.prevent="deleteUser">
+  Delete User
+</button>
+</span>
 
-
-                <p>Fill in the data below.</p>
-                <form
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Your Details Below</h5>
+        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form
                   class="requires-validation"
                   @submit.prevent="modUser"
                 >
                   <div class="col-md-12">
-                      <label for="">Name</label>
                     <input
-                      class="form-control"
                       type="text"
                       placeholder="Name"
                       v-model="Name"
@@ -36,7 +52,7 @@
                   <div class="col-md-12">
                       <label for="">Email</label><br>
                     <input
-                      class="form-control"
+
                       type="text"
                       placeholder="Email"
 
@@ -46,7 +62,7 @@
                   <div class="col-md-12">
                       <label for="">Password</label><br>
                     <input
-                      class="form-input neu-border-inset"
+
                       type="text"
                       v-model="Password"
                       placeholder="Password"
@@ -57,31 +73,36 @@
                   <div class="col-md-12">
                       <label for="">Phone number</label><br>
                     <input
-                      class="form-control"
+
                       type="text"
                       placeholder="Phone number"
                       v-model="number"
                     />
                   </div>
                   <div class="form-button mt-3">
-                    <button id="submit" type="submit"  class="btn btn-primary">
+                    <button id="submit" type="submit" data-bs-dismiss="modal"  class="btn btn-primary">
                       Edit
                     </button>
                   </div>
-                </form>
-              </div>
-            </div>
+                </form> 
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
           </div>
-        </div>
-        <div class="row">
-          
         </div>
       </div>
     </div>
   </section>
 </template>
 <script>
+
+
 export default {
+
   data() {
 
     return {
@@ -89,11 +110,23 @@ export default {
       Name: "",
       Email: "",
       Password: "",
-      number: ""
+      number: "",
+      renderComponent: true,
       
     };
   },
 methods: {
+  
+  forceRerender() {
+        // Removing my-component from the DOM
+        this.renderComponent = false;
+
+        this.$nextTick(() => {
+          // Adding the component back in
+          this.renderComponent = true;
+        });
+      }
+    ,
   modUser(){
       if (!localStorage.getItem("jwt")) {
         alert("User not logged in");
@@ -137,13 +170,34 @@ methods: {
       })
         .then((response) => response.json())
         .then((json) => {
-          console.log(json)
           this.users = json
         })
         .catch((err) => {
           alert(err);
         });
-    }
+    },
+    deleteUser(){
+            if (!localStorage.getItem("jwt")) {
+        alert("User not logged in");
+        return this.$router.push({ name: "Login" });
+      }
+      fetch("https://pos-colab.herokuapp.com/users/", {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          alert("DELETED USER")
+        })
+        .catch((err) => {
+          alert(err);
+        });
+            },
+    
+    
 };
 </script>
 <style scoped>
@@ -151,14 +205,18 @@ methods: {
 .dess{
   padding-top: 20px;
 }
+.modal-title{
+  color: black;
+}
 .create {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: max-content;
+  min-height: 100vh;
   background-color: #212529 !important;
+  overflow-x: hidden;
 
 }
 
@@ -185,7 +243,7 @@ methods: {
   padding: 40px;
   display: inline-block;
   width: 100%;
-  min-width: 540px;
+
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -297,5 +355,9 @@ label{
 
 .btn{
     width: 90px;
+    
+}
+.del{
+  margin-left:20px;
 }
 </style>
