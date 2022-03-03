@@ -18,26 +18,26 @@
         <div class="row">
           <div class="col">
             <!-- Button trigger modal -->
-<span>
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Edit Profile
-</button></span>
+          <span>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      Edit Profile
+            </button></span>
                   <span class="del"><button type="button" class="btn btn-danger" @click.prevent="deleteUser">
-  Delete User
-</button>
-</span>
+                      Delete User
+              </button>
+            </span>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Your Details Below</h5>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Your Details Below</h5>
         
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form
+                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                 </div>
+                   <div class="modal-body">
+               <form
                   class="requires-validation"
                   @submit.prevent="modUser"
                 >
@@ -206,6 +206,11 @@ methods: {
 .dess{
   padding-top: 20px;
 }
+
+.container{
+  margin-top: -250px !important;
+
+}
 .modal-title{
   color: black;
 }
@@ -355,10 +360,19 @@ label{
 }
 
 .btn{
-    width: 90px;
-    
+    width: 150px;
+    border-radius: 350px;
+}
+
+.btn:hover {
+  transform: scale(1.1);
 }
 .del{
   margin-left:20px;
+  
+}
+
+.row{
+  margin-top: 10px;
 }
 </style>

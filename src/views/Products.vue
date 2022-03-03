@@ -197,6 +197,9 @@ export default {
   height: fit-content;
 }
 .search-box{
+  background-color: #6c757d;
+  margin: 8px;
+  border-radius: 350px;
   width: 100%;
   position: relative;
   display: flex;
@@ -205,26 +208,25 @@ export default {
 .search-input{
   width: 100%;
   padding: 10px;
-  border: 4px solid #111d5e;
+  border: none;
+  /* border: 4px solid #111d5e;
   border-radius:10px 0 0 10px ;
   border-right: none;
-  outline: none;
+  outline: none; */
   font-size: 20px;
-  color: tomato;
+  color: white;
   background: none;
 }
 .search-button{
  text-align: center;
+ border-radius: px;
 height: 51px;
-width: 40px;
-outline: none;
+width: 40px !important;
+outline: transparent;
 cursor: pointer;
-border: 4px solid #111d5e;
- border-radius: 0 10px 10px 0 ;
-border-left: none;
 background: none;
 font-size: 20px;
-border-left: 4px solid #111d5e;
+
 
 
 }
@@ -239,6 +241,7 @@ border-left: 4px solid #111d5e;
   margin-top: 60px;
   max-width: 1400px;
 }
+
 
 .products {
   background-color: #212529 !important;
@@ -473,7 +476,10 @@ border-left: 4px solid #111d5e;
 }
 
 .profile:hover {
-  color: white;
   transform: scale(1.1);
+}
+
+.float-end{
+  border-radius: 350px;
 }
 </style>
