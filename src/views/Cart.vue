@@ -41,26 +41,7 @@ export default {
     }
   },
   methods: {
-    deleteCart(id){
-            if (!localStorage.getItem("jwt")) {
-        alert("User not logged in");
-        return this.$router.push({ name: "Login" });
-      }
-      fetch('http://localhost:6969/users/cart/'  + id, {
-      method: 'DELETE',
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          alert("DELETED CART")
-        })
-        .catch((err) => {
-          alert(err);
-        });
-  },},
+   },
   mounted(){
     fetch("https://pos-colab.herokuapp.com/users/cart", {
         method: "GET",
