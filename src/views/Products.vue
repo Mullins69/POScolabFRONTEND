@@ -47,7 +47,7 @@
                 <span class="btn btn-warning bold-btn" @click="addToCart">add to cart</span>
               </div>
               <div class="clearfix mb-1">
-                <button class="float-end btn btn-danger" @click="DeleteProduct" >DELETE</button>
+                <button class="float-end btn btn-danger" @click="deleteProduct" >DELETE</button>
               </div>
             </div>
           </div>
@@ -68,6 +68,26 @@ export default {
     };
   },
   methods: {
+    deleteProduct(){
+            if (!localStorage.getItem("jwt")) {
+        alert("User not logged in");
+        return this.$router.push({ name: "Login" });
+      }
+      fetch('https://pos-colab.herokuapp.com/products/', {
+      method: 'DELETE',
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          alert("DELETED PRODUCT")
+        })
+        .catch((err) => {
+          alert(err);
+        });
+            },
     forceRerender() {
         // Removing my-component from the DOM
         this.renderComponent = false;
