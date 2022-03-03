@@ -117,6 +117,7 @@ export default {
   },
 methods: {
   deleteUser(){
+    if(confirm("Do you really want to delete your profile?")){
             if (!localStorage.getItem("jwt")) {
         alert("User not logged in");
         return this.$router.push({ name: "Login" });
@@ -132,11 +133,12 @@ methods: {
         .then((json) => {
           alert("DELETED USER")
           localStorage.clear();
+          return this.$router.push({ name: "Home" });
         })
         .catch((err) => {
           alert(err);
         });
-            },
+            }},
   forceRerender() {
         // Removing my-component from the DOM
         this.renderComponent = false;

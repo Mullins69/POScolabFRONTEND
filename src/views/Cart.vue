@@ -19,7 +19,9 @@
           </div>
           <div class="col-2">
             <p id="cartItem1Price">PRICE: R{{carts.price}}</p>
+             <button @click="deleteCart(carts._id)">Remove</button>
           </div>
+
         </div>
         <hr>
 
@@ -38,6 +40,27 @@ export default {
       cart: null,
     }
   },
+  methods: {
+    deleteCart(id){
+            if (!localStorage.getItem("jwt")) {
+        alert("User not logged in");
+        return this.$router.push({ name: "Login" });
+      }
+      fetch('http://localhost:6969/users/cart/'  + id, {
+      method: 'DELETE',
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          alert("DELETED CART")
+        })
+        .catch((err) => {
+          alert(err);
+        });
+  },},
   mounted(){
     fetch("https://pos-colab.herokuapp.com/users/cart", {
         method: "GET",
