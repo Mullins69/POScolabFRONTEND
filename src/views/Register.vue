@@ -219,6 +219,7 @@ label {
 .btn-outline-primary:hover {
     background-color: #0DB8DE;
     right: 0px;
+    color: white;
 }
 
 .login-btm {

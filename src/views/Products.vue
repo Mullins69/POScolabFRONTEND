@@ -1,14 +1,22 @@
 <template>
-  <div v-if="products" class="products">
+<section v-if="renderComponent">
+  <div v-if="products" class="products" >
     <h2>Products</h2>
     <div class="right-side">
       <button class="cart">
         <router-link :to="{ name: 'Cart' }"> CART</router-link>
       </button>
     </div>
-    <div class="container-fluid" style="position: relative">
+    <div class="container-fluid" style="position: relative" >
+      <div class="row">
+        <div class="col">
+           <div class="search-box">
+      <input type="text" v-model="search" class="search-input" placeholder="Search..">
+   </div>
+        </div>
+      </div>
       <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
-        <div class="col hp" v-for="product of products" :key="product._id">
+        <div class="col hp" v-for="product of filterProducts" :key="product._id">
           <div class="card h-100 shadow-sm">
             <a href="#">
               <img
@@ -19,7 +27,7 @@
             </a>
 
             <div class="label-top shadow-sm">
-              <a class="text-white" href="#">{{ product.category }}</a>
+              <span class="text-white" >{{ product.category }}</span>
             </div>
             <div class="card-body">
               <div class="clearfix mb-3">
@@ -36,10 +44,10 @@
                 {{ product.description }}
               </h5>
               <div class="d-grid gap-2 my-4">
-                <a href="" class="btn btn-warning bold-btn">add to cart</a>
+                <span class="btn btn-warning bold-btn" @click="addToCart">add to cart</span>
               </div>
               <div class="clearfix mb-1">
-                <span class="float-end">DELETE</span>
+                <button class="float-end btn btn-danger" @click="DeleteProduct" >DELETE</button>
               </div>
             </div>
           </div>
@@ -48,14 +56,53 @@
     </div>
   </div>
   <div v-else>Loading Products...</div>
+</section>
 </template>
 <script>
 export default {
   data() {
     return {
       products: null,
+      search: "",
+      renderComponent: true,
     };
   },
+  methods: {
+    forceRerender() {
+        // Removing my-component from the DOM
+        this.renderComponent = false;
+
+        this.$nextTick(() => {
+          // Adding the component back in
+          this.renderComponent = true;
+        });
+      }
+    ,
+    addToCart(){
+        fetch("https://pos-colab.herokuapp.com/users", {
+        method: "POST",
+        body: JSON.stringify({
+          fullname: this.name,
+          email: this.email,
+          phone_number: this.contact,
+          password: this.password,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          alert("User registered");
+          localStorage.setItem("jwt", json.jwt);
+          this.$router.push({ name: "Products" });
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
+  }
+  ,
   mounted() {
     if (localStorage.getItem("jwt")) {
       fetch("https://pos-colab.herokuapp.com/products/", {
@@ -93,6 +140,13 @@ export default {
       this.$router.push({ name: "Login" });
     }
   },
+  computed:{
+    filterProducts:function(){
+      return this.products.filter((product) =>{
+        return product.title.match(this.search)
+      })
+    }
+  }
 };
 </script>
 <style scoped>
@@ -119,7 +173,48 @@ export default {
   --link-color-hover: #fff;
   --bg-content-color: #ffcc00;
 }
+.products{
+  height: fit-content;
+}
+.search-box{
+  width: 100%;
+  position: relative;
+  display: flex;
 
+}
+.search-input{
+  width: 100%;
+  padding: 10px;
+  border: 4px solid #111d5e;
+  border-radius:10px 0 0 10px ;
+  border-right: none;
+  outline: none;
+  font-size: 20px;
+  color: tomato;
+  background: none;
+}
+.search-button{
+ text-align: center;
+height: 51px;
+width: 40px;
+outline: none;
+cursor: pointer;
+border: 4px solid #111d5e;
+ border-radius: 0 10px 10px 0 ;
+border-left: none;
+background: none;
+font-size: 20px;
+border-left: 4px solid #111d5e;
+
+
+}
+.search{
+  width: 35%;
+  position: absolute;
+  left: 40%;
+  top: 40%;
+  transform: translate(-50% , -50%);
+}
 .container-fluid {
   margin-top: 60px;
   max-width: 1400px;
@@ -324,7 +419,6 @@ export default {
 }
 
 .right-side {
-  left: 81%;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -339,7 +433,7 @@ export default {
   border: none;
   width: 100px;
   height: 40px;
-  margin: 10px;
+
 }
 
 .cart:hover {

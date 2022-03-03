@@ -55,7 +55,6 @@ export default {
   methods: {
     logout() {
       localStorage.clear();
-      this.toggleNav;
     },
   },
 };

@@ -35,8 +35,8 @@
                                 </div>
                                 <div class="col-lg-6 login-btm login-button">
                                     <button type="submit" class="btn btn-outline-primary">LOGIN</button>
-                                    <button type="button" class="btn btn-outline-primary"><router-link :to="{ name: 'Register' }">
-                                      Register
+                                    <button type="button" class="btn btn-outline-primary"><router-link :to="{ name: 'Register' }" class="regbtn">
+                                      REGISTER
                                     </router-link></button>
                                 </div>
                             </div>
@@ -94,7 +94,10 @@ export default {
     height: 100vh;
     font-family: 'Roboto', sans-serif;
 }
-
+.regbtn{
+    text-decoration: none;
+    color: #0DB8DE;
+}
 .login-box {
     margin-top: 75px;
     height: auto;
@@ -196,6 +199,12 @@ label {
 .btn-outline-primary:hover {
     background-color: #0DB8DE;
     right: 0px;
+    color: white;
+}
+.regbtn:hover {
+    background-color: #0DB8DE;
+    right: 0px;
+    color: white;
 }
 
 .login-btm {
