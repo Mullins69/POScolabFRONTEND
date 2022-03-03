@@ -19,13 +19,14 @@
                                 <label class="form-control-label" >EMAIL</label>
                                 <input type="email" class="form-control"
                                 v-model="email"
-                                
+                                required
                               placeholder="Email">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">PASSWORD</label>
                                 <input type="password" class="form-control" 
                                 v-model="password"
+                                required
                                 placeholder="Password">
                             </div>
 
